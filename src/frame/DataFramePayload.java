@@ -1,5 +1,6 @@
 package frame;
 
+import converter.Converter;
 import java.util.BitSet;
 
 public class DataFramePayload extends FramePayload {

@@ -1,5 +1,7 @@
 package frame;
 
+import converter.Converter;
+
 import java.util.BitSet;
 
 public class HeaderFramePayload extends FramePayload {

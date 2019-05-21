@@ -1,7 +1,7 @@
 package frame;
 
+import converter.Converter;
 import java.util.BitSet;
-import java.util.stream.IntStream;
 
 public class FramePayload {
     private BitSet padLength = new BitSet(8);
