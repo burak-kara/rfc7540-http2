@@ -1,16 +1,20 @@
 package frame;
 
 import converter.Converter;
-import java.util.BitSet;
 
 public class DataFramePayload extends FramePayload {
-    private BitSet data = new BitSet();
+    private Converter converter;
+    private String data;
 
-    public void setData(int data) {
-        this.data = (new Converter()).longToBitSet(data);
+    public DataFramePayload() {
+        converter = new Converter();
     }
 
-    public BitSet getData() {
+    public void setData(int data) {
+        // TODO
+    }
+
+    public String getData() {
         return data;
     }
 }

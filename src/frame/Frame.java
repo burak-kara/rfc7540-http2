@@ -1,69 +1,63 @@
 package frame;
 
 import converter.Converter;
-
 import java.util.BitSet;
 
 public class Frame {
-    private BitSet length = new BitSet(24);
-    private BitSet type = new BitSet(8);
-    private BitSet flags = new BitSet(8);
-    private BitSet r = new BitSet(1);
-    private BitSet streamIdentifier = new BitSet(31);
+    private String length;
+    private String type;
+    private String flags;
+    private String r;
+    private String streamIdentifier;
     private FramePayload framePayload;
+    private Converter converter;
 
     public Frame() {
-       // test();
-    }
-
-    private void test() {
-        length.set(0);
-        length.set(1);
-        System.out.println((new Converter()).bitSetToLong(length));
-        System.out.println((new Converter()).longToBitSet(10));
+        converter = new Converter();
     }
 
     public void setLength(int len) {
-        this.length = (new Converter()).longToBitSet(len);
+        this.length = converter.intToBinaryString(len, 24);
+
     }
 
     public void setType(int type) {
-        this.type = (new Converter()).longToBitSet(type);
+        this.type = converter.intToBinaryString(type, 8);
     }
 
     public void setFlags(int flags) {
-        this.flags = (new Converter()).longToBitSet(flags);
+        this.flags = converter.intToBinaryString(flags, 8);
     }
 
     public void setR(int r) {
-        this.r = (new Converter()).longToBitSet(r);
+        this.r = converter.intToBinaryString(r, 1);
     }
 
     public void setStreamIdentifier(int streamIdentifier) {
-        this.streamIdentifier = (new Converter()).longToBitSet(streamIdentifier);
+        this.streamIdentifier = converter.intToBinaryString(streamIdentifier, 31);
     }
 
     public void setFramePayload(FramePayload framePayload) {
         this.framePayload = framePayload;
     }
 
-    public BitSet getLength() {
+    public String getLength() {
         return length;
     }
 
-    public BitSet getType() {
+    public String getType() {
         return type;
     }
 
-    public BitSet getFlags() {
+    public String getFlags() {
         return flags;
     }
 
-    public BitSet getR() {
+    public String getR() {
         return r;
     }
 
-    public BitSet getStreamIdentifier() {
+    public String getStreamIdentifier() {
         return streamIdentifier;
     }
 

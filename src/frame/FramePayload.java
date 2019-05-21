@@ -1,25 +1,29 @@
 package frame;
 
 import converter.Converter;
-import java.util.BitSet;
 
 public class FramePayload {
-    private BitSet padLength = new BitSet(8);
-    private BitSet padding = new BitSet();
+    private String padLength;
+    private String padding;
+    private Converter converter;
+
+    public FramePayload() {
+        converter = new Converter();
+    }
 
     public void setPadLength(int length) {
-        this.padLength = (new Converter()).longToBitSet(length);
+        this.padLength = converter.intToBinaryString(length, 8);
     }
 
     public void setPadding(int padding) {
-        this.padding = (new Converter()).longToBitSet(padding);
+        this.padding = converter.intToBinaryString(padding, 0); // TODO change 0
     }
 
-    public BitSet getPadLength() {
+    public String getPadLength() {
         return padLength;
     }
 
-    public BitSet getPadding() {
+    public String getPadding() {
         return padding;
     }
 }

@@ -1,8 +1,6 @@
 package http2;
 
-import frame.DataFramePayload;
 import frame.Frame;
-import frame.HeaderFramePayload;
 
 import java.util.ArrayList;
 
@@ -14,15 +12,11 @@ public class HTTP2 {
     public void createHeaderFrame() {
         header = new Frame();
         frames.add(header);
-        HeaderFramePayload headerFramePayload = new HeaderFramePayload();
-        header.setFramePayload(headerFramePayload);
     }
 
     public void createDataFrame() {
         data = new Frame();
         frames.add(data);
-        DataFramePayload dataFramePayload = new DataFramePayload();
-        data.setFramePayload(dataFramePayload);
     }
 
     public Frame getHeader() {

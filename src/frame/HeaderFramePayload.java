@@ -2,44 +2,46 @@ package frame;
 
 import converter.Converter;
 
-import java.util.BitSet;
-
 public class HeaderFramePayload extends FramePayload {
-    private BitSet headers = new BitSet();
-    private BitSet e = new BitSet(1);
-    private BitSet dependency = new BitSet(31);
-    private BitSet weight = new BitSet(8);
+    private String headers;
+    private String e;
+    private String dependency;
+    private String weight;
+    private Converter converter;
 
+    public HeaderFramePayload() {
+        converter = new Converter();
+    }
 
     public void setHeaders(int headers) {
-        this.headers = (new Converter()).longToBitSet(headers);
+        this.headers = converter.intToBinaryString(headers, 0); // TODO headers are string
     }
 
     public void setE(int e) {
-        this.e = (new Converter()).longToBitSet(e);
+        this.e = converter.intToBinaryString(e, 1);
     }
 
     public void setDependency(int dependency) {
-        this.dependency = (new Converter()).longToBitSet(dependency);
+        this.dependency = converter.intToBinaryString(dependency, 31);
     }
 
     public void setWeight(int weight) {
-        this.weight = (new Converter()).longToBitSet(weight);
+        this.weight = converter.intToBinaryString(weight, 8);
     }
 
-    public BitSet getHeaders() {
+    public String getHeaders() {
         return headers;
     }
 
-    public BitSet getE() {
+    public String getE() {
         return e;
     }
 
-    public BitSet getDependency() {
+    public String getDependency() {
         return dependency;
     }
 
-    public BitSet getWeight() {
+    public String getWeight() {
         return weight;
     }
 }

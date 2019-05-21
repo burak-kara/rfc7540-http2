@@ -4,6 +4,21 @@ import java.util.BitSet;
 import java.util.stream.IntStream;
 
 public class Converter {
+    // int and Binary String----------------------------------------
+    public String intToBinaryString(int number, int length) {
+        String str = Integer.toBinaryString(number);
+        str = fixLength(str, length);
+        System.out.println(str);
+        return str;
+    }
+
+    private String fixLength(String str, int length) {
+        StringBuilder strBuilder = new StringBuilder(str);
+        while (strBuilder.length() < length)
+            strBuilder.insert(0, "0");
+        return strBuilder.toString();
+    }
+
     // Long and BitSet converters-------------------------------------------------------
     public BitSet longToBitSet(long number) {
         BitSet set = new BitSet(8);
