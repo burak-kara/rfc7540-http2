@@ -1,3 +1,5 @@
+package frame;
+
 import java.util.BitSet;
 
 public class HeaderFramePayload extends FramePayload {

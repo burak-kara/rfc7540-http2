@@ -1,3 +1,5 @@
+package converter;
+
 import java.util.BitSet;
 import java.util.stream.IntStream;
 
