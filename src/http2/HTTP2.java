@@ -9,14 +9,9 @@ public class HTTP2 {
     private Frame data;
     private ArrayList<Frame> frames = new ArrayList<>();
 
-    public void createHeaderFrame() {
-        header = new Frame();
+    public void setHeader(Frame frame) {
+        this.header = frame;
         frames.add(header);
-    }
-
-    public void createDataFrame() {
-        data = new Frame();
-        frames.add(data);
     }
 
     public Frame getHeader() {
@@ -29,5 +24,13 @@ public class HTTP2 {
 
     public ArrayList<Frame> getFrames() {
         return frames;
+    }
+
+    public String getPacketAsString() {
+        String str = "";
+        for (Frame frame: frames) {
+            str += frame.getFrame();
+        }
+        return str;
     }
 }

@@ -58,7 +58,7 @@ public class StackCore implements StackCoreIF {
    public static final int SC_WM_SERVER = 1;
    public static final int SC_WM_CLIENT = 2;
    
-   public static final String[] wmText = {"None", "Server", "Client"};
+   public static final String[] wmText = {"None", "test.Server", "Client"};
    
    protected int workingMode = SC_WM_NONE;
    
