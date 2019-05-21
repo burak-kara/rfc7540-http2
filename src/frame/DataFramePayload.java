@@ -17,4 +17,8 @@ public class DataFramePayload extends FramePayload {
     public String getData() {
         return data;
     }
+
+    public int getSize() {
+        return super.getSize() + data.length();
+    }
 }

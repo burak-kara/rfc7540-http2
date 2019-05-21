@@ -36,11 +36,19 @@ public class MainTest {
 
         // -----------------------------------------------
         Frame headerFrame = packet.getHeader();
-        headerFrame.setLength(10);
+
         headerFrame.setType(1);
+        headerFrame.setFlags(10);
+        headerFrame.setR(1);
         headerFrame.setStreamIdentifier(100);
+
         FramePayload headerFramePayload = new HeaderFramePayload();
+
+        headerFramePayload.setPadding(10);
+
+
         headerFrame.setFramePayload(headerFramePayload);
+        headerFrame.setLength(headerFramePayload.getSize());
 
         //--------------------------------------------------
         Frame dataFrame = packet.getData();

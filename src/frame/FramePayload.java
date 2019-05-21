@@ -26,4 +26,8 @@ public class FramePayload {
     public String getPadding() {
         return padding;
     }
+
+    public int getSize() {
+        return padLength.length() + padding.length();
+    }
 }

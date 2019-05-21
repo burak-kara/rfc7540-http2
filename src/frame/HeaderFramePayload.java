@@ -44,4 +44,8 @@ public class HeaderFramePayload extends FramePayload {
     public String getWeight() {
         return weight;
     }
+
+    public int getSize() {
+        return super.getSize() +headers.length() + e.length() + dependency.length() + weight.length();
+    }
 }
