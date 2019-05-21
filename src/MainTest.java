@@ -8,16 +8,16 @@ public class MainTest {
 
         BitSet burak = (new Converter()).stringToBitSet("burak");
         System.out.println(burak);
-        System.out.println((new Converter()).BitSetToLong(burak));
+        System.out.println((new Converter()).bitSetToLong(burak));
 
         System.out.println("--------------------------------------");
 
         BitSet x = (new Converter()).hexToBitSet("A");
         System.out.println(x);
-        System.out.println((new Converter()).BitSetToLong(x));
+        System.out.println((new Converter()).bitSetToLong(x));
 
         System.out.println("--------------------------------------");
 
-        System.out.println((new Converter()).BitSetToString(burak));
+        System.out.println((new Converter()).bitSetToString(burak));
     }
 }

@@ -1,5 +1,4 @@
 import java.util.BitSet;
-import java.util.stream.IntStream;
 
 public class Frame {
     private BitSet length = new BitSet(24);
@@ -16,7 +15,7 @@ public class Frame {
     private void test() {
         length.set(0);
         length.set(1);
-        System.out.println((new Converter()).BitSetToLong(length));
+        System.out.println((new Converter()).bitSetToLong(length));
         System.out.println((new Converter()).longToBitSet(10));
     }
 
