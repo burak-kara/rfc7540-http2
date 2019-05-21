@@ -13,8 +13,8 @@ public class HeaderFramePayload extends FramePayload {
         converter = new Converter();
     }
 
-    public void setHeaders(int headers) {
-        this.headers = converter.intToBinaryString(headers, 0); // TODO headers are string
+    public void setHeaders(String headers) {
+        this.headers = converter.stringToBinaryString(headers); // TODO headers are string
     }
 
     public void setE(int e) {
@@ -29,23 +29,11 @@ public class HeaderFramePayload extends FramePayload {
         this.weight = converter.intToBinaryString(weight, 8);
     }
 
-    public String getHeaders() {
-        return headers;
-    }
-
-    public String getE() {
-        return e;
-    }
-
-    public String getDependency() {
-        return dependency;
-    }
-
-    public String getWeight() {
-        return weight;
-    }
-
     public int getSize() {
-        return super.getSize() +headers.length() + e.length() + dependency.length() + weight.length();
+        return super.getSize() + headers.length() + e.length() + dependency.length() + weight.length();
+    }
+
+    public String getFrame() {
+        return super.getPadLength() + this.e + this.dependency + this.weight + this.headers + super.getPadding();
     }
 }

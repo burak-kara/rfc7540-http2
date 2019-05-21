@@ -10,15 +10,16 @@ public class DataFramePayload extends FramePayload {
         converter = new Converter();
     }
 
-    public void setData(int data) {
+    public void setData(String str) {
+        this.data = converter.stringToBinaryString(str);
         // TODO
-    }
-
-    public String getData() {
-        return data;
     }
 
     public int getSize() {
         return super.getSize() + data.length();
+    }
+
+    public String getFrame() {
+        return super.getPadLength() + this.data + super.getPadding();
     }
 }

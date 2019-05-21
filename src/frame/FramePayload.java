@@ -2,7 +2,7 @@ package frame;
 
 import converter.Converter;
 
-public class FramePayload {
+public abstract class FramePayload {
     private String padLength;
     private String padding;
     private Converter converter;
@@ -30,4 +30,6 @@ public class FramePayload {
     public int getSize() {
         return padLength.length() + padding.length();
     }
+
+    public abstract String getFrame();
 }
