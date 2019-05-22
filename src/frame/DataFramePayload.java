@@ -1,15 +1,25 @@
 package frame;
 
-import java.util.BitSet;
+import converter.Converter;
 
 public class DataFramePayload extends FramePayload {
-    private BitSet data = new BitSet();
+    private Converter converter;
+    private String data;
 
-    public void setData(int data) {
-        this.data = (new Converter()).longToBitSet(data);
+    public DataFramePayload() {
+        converter = new Converter();
     }
 
-    public BitSet getData() {
-        return data;
+    public void setData(String str) {
+        this.data = converter.stringToBinaryString(str);
+        // TODO
+    }
+
+    public int getSize() {
+        return super.getSize() + data.length();
+    }
+
+    public String getFrame() {
+        return super.getPadLength() + this.data + super.getPadding();
     }
 }
