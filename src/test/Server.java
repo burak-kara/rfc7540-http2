@@ -1,6 +1,7 @@
 package test;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
