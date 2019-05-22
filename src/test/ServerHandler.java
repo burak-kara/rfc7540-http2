@@ -28,7 +28,7 @@ public class ServerHandler implements Runnable{
                 //count-> # bytes actually read, data->all data gathered
             }
         } catch (IOException ioe) {
-            System.out.printf("Error on connection!!\n");
+            System.out.print("Error on connection!!\n");
         }
     }
 
