@@ -22,20 +22,10 @@ public class Client implements Runnable {
     public void run() {
         try {
             server = new Socket(IP, PORT);
-            System.out.println("Connected");
-
-            InputStream in = server.getInputStream();
-            InputStreamReader streamReader = new InputStreamReader(in);
+            InputStreamReader streamReader = new InputStreamReader(server.getInputStream());
             reader = new BufferedReader(streamReader);
-
             writer = new PrintWriter(server.getOutputStream());
-
-
-            DataOutputStream out = new DataOutputStream(server.getOutputStream());
-            String str = "CONNECTION MSG";
-            out.writeBytes(str);
-            out.flush();
-
+            writer.println("Connected");
             writer.flush();
         } catch (Exception e) {
             System.out.println("Exception " + e);
