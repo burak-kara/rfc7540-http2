@@ -1,6 +1,5 @@
 package test;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import http2.HTTP2;
 
 import java.io.*;
