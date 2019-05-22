@@ -15,8 +15,13 @@ public class HTTP2 {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public void setData(Frame frame) {
         this.data = frame;
+=======
+    public void createDataFrame() {
+        data = new Frame();
+>>>>>>> parent of bb1ad5c... Added Server and Client Examples. Client must be fixed.
 =======
     public void createDataFrame() {
         data = new Frame();
@@ -36,6 +41,7 @@ public class HTTP2 {
         return frames;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public String getPacketAsString() {
         StringBuilder str = new StringBuilder();
@@ -44,6 +50,8 @@ public class HTTP2 {
         }
         return str.toString();
     }
+=======
+>>>>>>> parent of bb1ad5c... Added Server and Client Examples. Client must be fixed.
 =======
 >>>>>>> parent of bb1ad5c... Added Server and Client Examples. Client must be fixed.
 }
