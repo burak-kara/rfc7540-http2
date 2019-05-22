@@ -37,7 +37,8 @@ import com.dparser.GenericDiameterMessage;
 import com.sip_client.ClientTestMain;
 
 public class DiaTestHead implements ApplicationIF {
-    public static DiaTestHead instance = new DiaTestHead();
+
+   public static DiaTestHead instance = new DiaTestHead();
 
 //   // Do not use in the case of binding to all adapters
 //   static String localAddress = "127.0.0.1";
@@ -288,12 +289,14 @@ public class DiaTestHead implements ApplicationIF {
     public int onReceivedMessage(byte[] rawMessage, int length, String sourceAddress, short sourcePort) {
         //String msg = new String(rawMessage, 0, length, StandardCharsets.UTF_8);
         System.out.println("RECEIVED(UDP) - Not expected to be invoked");
+
 //      stopTransactionTimer();
 //      String rcved = new String(rawMessage, 0, length, StandardCharsets.UTF_8);
 //      int index = rcved.indexOf(' ');
 //      String keyword = rcved.substring(0, index);
 //      ReceivedMessage rcvmsg = new ReceivedMessage(sourceAddress, sourcePort, rcved, keyword);
 //      rcvedMsgQueue.enqueue(rcvmsg);
+
 
         return 0;
     }
@@ -303,6 +306,7 @@ public class DiaTestHead implements ApplicationIF {
     /* Note that parameter 'message' consists of only headers part of message */
     public int onReceivedMessage(String message, ArrayList<String> messageHeader, byte[] messageBody) {
         System.out.println("From StreamMessageParser - Not expected to be invoked");
+
 //      System.out.println("HEADERS:");
 //      int vsize = messageHeader.size();
 //      for (int i = 0; i < vsize; i++) {
@@ -415,6 +419,7 @@ public class DiaTestHead implements ApplicationIF {
 //
 //      return 0;
 //   }
+
 
     static int SendUDR(int id) {
         final byte message[] = new byte[]
