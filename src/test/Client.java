@@ -30,6 +30,7 @@ public class Client implements Runnable {
 
             writer = new PrintWriter(server.getOutputStream());
 
+
             DataOutputStream out = new DataOutputStream(server.getOutputStream());
             String str = "CONNECTION MSG";
             out.writeBytes(str);
