@@ -124,28 +124,44 @@ public class TestCreator {
         Frame header = new Frame();
         packet.setHeader(header);
         header.setType(Type.HEADERS.getType());
-        header.setFlags(Flags.END_STREAM.getCode() + Flags.END_HEADERS.getCode());
+        header.setFlags(Flags.END_HEADERS.getCode());
         header.setR(0); // Must be unset which is 0
         header.setStreamIdentifier(500); // Not sure, random
 
-        HeaderFramePayload payload = new HeaderFramePayload();
-        header.setFramePayload(payload);
-        payload.setPadLength(0); // not present
-        payload.setPadding(0); // not present
-        payload.setWeight(0); // not present
-        payload.setE(0);  // not present
-        payload.setDependency(0);  // not present
-        payload.setHeaders(requestHeader());
-        header.setLength(payload.getSize());
+        HeaderFramePayload headerFramePayload = new HeaderFramePayload();
+        header.setFramePayload(headerFramePayload);
+        headerFramePayload.setPadLength(0); // not present
+        headerFramePayload.setPadding(0); // not present
+        headerFramePayload.setWeight(0); // not present
+        headerFramePayload.setE(0);  // not present
+        headerFramePayload.setDependency(0);  // not present
+        headerFramePayload.setHeaders(responseHeader());
+        header.setLength(headerFramePayload.getSize());
+
+        Frame data = new Frame();
+        packet.setData(data);
+        data.setType(Type.DATA.getType());
+        data.setFlags(Flags.END_STREAM.getCode());
+        data.setR(0);
+        data.setStreamIdentifier(500);
+
+        DataFramePayload dataFramePayload = new DataFramePayload();
+        data.setFramePayload(dataFramePayload);
+        dataFramePayload.setPadding(0);
+        dataFramePayload.setPadLength(0);
+        dataFramePayload.setData(responseData());
+        data.setLength(dataFramePayload.getSize());
 
         return packet;
     }
 
-    private String requestHeader() {
-        return ":method = GET\n" +
-                ":scheme = https\n" +
-                ":path = /\n" +
-                "host = example.org\n" +
-                "accept = text/html, image/jpeg\n";
+    private String responseHeader() {
+        return ":status = 200\n" +
+                "content-type = text/plain\n" +
+                "content-length = 5000\n";
+    }
+
+    private String responseData() {
+        return "burak";
     }
 }

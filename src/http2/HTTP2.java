@@ -14,6 +14,11 @@ public class HTTP2 {
         frames.add(header);
     }
 
+    public void setData(Frame frame) {
+        this.data = frame;
+        frames.add(data);
+    }
+
     public Frame getHeader() {
         return header;
     }
@@ -27,10 +32,10 @@ public class HTTP2 {
     }
 
     public String getPacketAsString() {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for (Frame frame: frames) {
-            str += frame.getFrame();
+            str.append(frame.getFrame());
         }
-        return str;
+        return str.toString();
     }
 }

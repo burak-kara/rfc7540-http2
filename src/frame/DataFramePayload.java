@@ -12,7 +12,6 @@ public class DataFramePayload extends FramePayload {
 
     public void setData(String str) {
         this.data = converter.stringToBinaryString(str);
-        // TODO
     }
 
     public int getSize() {

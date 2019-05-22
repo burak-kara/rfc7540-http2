@@ -19,14 +19,16 @@ public class Converter {
     public String stringToBinaryString(String str) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < str.length(); i++)
-            builder.insert(0, intToBinaryString(str.charAt(i), 8));
+            builder.append(intToBinaryString(str.charAt(i), 8));
+            //builder.insert(0, intToBinaryString(str.charAt(i), 8));
         return builder.toString();
     }
 
     public String binaryStringToString(String str) {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < str.length(); i += 8) {
-            builder.insert(0, getCharacter(str.substring(i, i + 8)));
+            builder.append(getCharacter(str.substring(i, i+8)));
+            //builder.insert(0, getCharacter(str.substring(i, i + 8)));
         }
         return builder.toString();
     }
