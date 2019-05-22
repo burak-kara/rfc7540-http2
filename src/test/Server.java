@@ -1,6 +1,7 @@
 package test;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -46,33 +47,9 @@ public class Server implements Runnable {
                 while (true) {
                     System.out.println("Connection established");
                     InputStream stream = server.getInputStream();
-                    DataInputStream in = new DataInputStream(new BufferedInputStream(stream));
-
-                    byte[] line = new byte[2500];
-                    try {
-                        in.read(line);
-                        String str ="";
-                        for(byte i:line){
-                            System.out.print((char)i);
-                        }
-
-                    } catch(EOFException e) {
-                        System.err.println("\nException/End of stream");
-                    }
-                    System.err.println("\nEnd of stream");
-/*
                     byte[] data = new byte[2048];
                     int count = stream.read(data);
                     //count-> # bytes actually read, data->all data gathered
-                    System.out.println(""+count);
-
-                    String str = "";
-                    for(byte i:data){
-                        str+= i;
-                    }
-                    System.out.println(""+str);
-*/
-
                 }
             } catch (IOException ioe) {
                 System.out.print("Error on connection!!\n");
