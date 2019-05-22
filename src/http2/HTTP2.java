@@ -9,13 +9,18 @@ public class HTTP2 {
     private Frame data;
     private ArrayList<Frame> frames = new ArrayList<>();
 
-    public void setHeader(Frame frame) {
-        this.header = frame;
+    public void createHeaderFrame() {
+        header = new Frame();
         frames.add(header);
     }
 
+<<<<<<< HEAD
     public void setData(Frame frame) {
         this.data = frame;
+=======
+    public void createDataFrame() {
+        data = new Frame();
+>>>>>>> parent of bb1ad5c... Added Server and Client Examples. Client must be fixed.
         frames.add(data);
     }
 
@@ -30,6 +35,7 @@ public class HTTP2 {
     public ArrayList<Frame> getFrames() {
         return frames;
     }
+<<<<<<< HEAD
 
     public String getPacketAsString() {
         StringBuilder str = new StringBuilder();
@@ -38,4 +44,6 @@ public class HTTP2 {
         }
         return str.toString();
     }
+=======
+>>>>>>> parent of bb1ad5c... Added Server and Client Examples. Client must be fixed.
 }
