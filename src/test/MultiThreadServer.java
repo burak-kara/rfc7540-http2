@@ -24,7 +24,7 @@ public class MultiThreadServer implements Runnable {
 
     public static void main(String[] args) throws Exception {
         ServerSocket serverSocket = new ServerSocket(9090);
-        System.out.println("Server started port at" + 9090);
+        System.out.println("Server started port at " + 9090);
 
         while (true) {
             Socket socket = serverSocket.accept();

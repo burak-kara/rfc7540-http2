@@ -1,7 +1,9 @@
 package test;
 
-import java.io.IOException;
-import java.io.InputStream;
+import converter.Converter;
+import http2.HTTP2;
+
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -44,13 +46,29 @@ public class Server implements Runnable {
         @Override
         public void run() {
             try {
+                System.out.println("Connection established");
+                System.out.println("Message: ");
                 while (true) {
-                    System.out.println("Connection established");
                     InputStream stream = server.getInputStream();
                     DataInputStream in = new DataInputStream(new BufferedInputStream(stream));
+                    DataOutputStream out = new DataOutputStream(server.getOutputStream());
+
+
+
+                    /*
+                    TestCreator tc = new TestCreator();
+                    String responseHeader = tc.getResponseHeader();
+                    System.out.println(responseHeader);
+                    */
+
+                    //out.writeBytes(responseHeader);
+
+                    //System.out.println(new Converter().binaryStringToString(binaryString));
+
 
                     byte[] line = new byte[2500];
                     try {
+
                         in.read(line);
                         String str ="";
                         for(byte i:line){
@@ -60,7 +78,15 @@ public class Server implements Runnable {
                     } catch(EOFException e) {
                         System.err.println("\nException/End of stream");
                     }
-                    System.err.println("\nEnd of stream");
+
+
+                    TestCreator tc = new TestCreator();
+                    String responseHeader = tc.getResponseHeader();
+                    out.writeBytes(" PLAIN_TEXT");
+
+
+
+
 /*
                     byte[] data = new byte[2048];
                     int count = stream.read(data);
@@ -81,6 +107,7 @@ public class Server implements Runnable {
         }
 
     }
+
 
     public static void main(String args[]) {
         Thread server = new Thread(new Server());

@@ -161,6 +161,10 @@ public class TestCreator {
                 "content-length = 5000\n";
     }
 
+    public String getResponseHeader(){
+        return responseHeader();
+    }
+
     private String responseData() {
         return "burak";
     }

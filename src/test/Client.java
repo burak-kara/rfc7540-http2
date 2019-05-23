@@ -21,27 +21,48 @@ public class Client implements Runnable {
     @Override
     public void run() {
         try {
+            /*
+            InputStreamReader streamReader = new InputStreamReader(in);
+            reader = new BufferedReader(streamReader);
+            writer = new PrintWriter(server.getOutputStream());
+            writer.flush();
+            System.out.println(reader.readLine());
+            */
+
             server = new Socket(IP, PORT);
             System.out.println("Connected");
 
-            InputStream in = server.getInputStream();
-            InputStreamReader streamReader = new InputStreamReader(in);
-            reader = new BufferedReader(streamReader);
-
-            writer = new PrintWriter(server.getOutputStream());
-
-
+            InputStream inStream = server.getInputStream();
+            DataInputStream in = new DataInputStream(new BufferedInputStream(inStream));
             DataOutputStream out = new DataOutputStream(server.getOutputStream());
-            String str = "CONNECTION MSG";
-            out.writeBytes(str);
-            out.flush();
 
-            writer.flush();
+            TestCreator tc = new TestCreator();
+            String responseHeader = tc.getResponseHeader();
+
+            System.out.println("Message Sent: \n"+responseHeader);
+            out.writeBytes(responseHeader);
+
+            while(true) {
+                byte[] line = new byte[2500];
+                try {
+                    in.read(line);
+                    String str = "";
+                    for (byte i : line) {
+                        System.out.print((char) i);
+                    }
+
+                } catch (EOFException e) {
+                    System.err.println("\nException/End of stream");
+                }
+
+            }
+
+
         } catch (Exception e) {
             System.out.println("Exception " + e);
         }
         Thread IncomingReader = new Thread(new IncomingReader());
-        IncomingReader.start();
+        //IncomingReader.start();
     }
 
     public void sendBoard(String message) {
