@@ -4,6 +4,8 @@ import converter.Converter;
 import frame.*;
 import http2.HTTP2;
 
+// This class is for test purpose
+
 public class TestCreator {
     enum Flags {
         ACK(1), // ping type
@@ -175,6 +177,10 @@ public class TestCreator {
         return ":status = 200\n" +
                 "content-type = text/plain\n" +
                 "content-length = 5000\n";
+    }
+
+    public String getResponseHeader() {
+        return responseHeader();
     }
 
     private String responseData() {

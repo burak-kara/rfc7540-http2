@@ -20,11 +20,11 @@ public class HeaderFramePayload extends FramePayload {
     }
 
     public void setPadding(int padding) {
-        this.padding = converter.intToBinaryString(padding, 0); // TODO change 0
+        this.padding = converter.intToBinaryString(padding, 0);
     }
 
     public void setHeaders(String headers) {
-        this.headers = converter.stringToBinaryString(headers); // TODO headers are string
+        this.headers = converter.stringToBinaryString(headers);
     }
 
     public void setE(int e) {
