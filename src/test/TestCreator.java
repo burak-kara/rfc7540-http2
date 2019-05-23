@@ -86,7 +86,7 @@ public class TestCreator {
 
     private void createPacket() {
         HTTP2 packet = new HTTP2();
-
+/*
         // -----------------------------------------------
         Frame headerFrame = packet.getHeader();
         headerFrame.setType(1);
@@ -106,6 +106,7 @@ public class TestCreator {
         headerFrame.setLength(headerPayload.getSize());
 
         //--------------------------------------------------
+        */
     }
 
     private String getHeader() {
@@ -121,6 +122,20 @@ public class TestCreator {
     public HTTP2 packetExp() {
         HTTP2 packet = new HTTP2();
 
+        Frame settings = new Frame();
+        packet.setSettings(settings);
+        settings.setType(Type.SETTINGS.getType());
+        settings.setFlags(Flags.ACK.getCode());
+        settings.setR(0);
+        settings.setStreamIdentifier(500);
+
+        SettingFramePayload settingFramePayload = new SettingFramePayload();
+        settings.setFramePayload(settingFramePayload);
+        settingFramePayload.setValue(0);
+        settingFramePayload.setIdentifier(0);
+        settings.setLength(settingFramePayload.getSize());
+
+        // HEADER frame---------------------------------------------
         Frame header = new Frame();
         packet.setHeader(header);
         header.setType(Type.HEADERS.getType());
@@ -138,6 +153,7 @@ public class TestCreator {
         headerFramePayload.setHeaders(responseHeader());
         header.setLength(headerFramePayload.getSize());
 
+        // DATA frame----------------------------------------------
         Frame data = new Frame();
         packet.setData(data);
         data.setType(Type.DATA.getType());
