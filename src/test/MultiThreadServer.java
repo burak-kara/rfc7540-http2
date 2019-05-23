@@ -16,7 +16,7 @@ public class MultiThreadServer implements Runnable {
     private final String ROOT = ""; //"/home/ec2-user/webpage";
     private final String NEW_LINE = "\n";
     private final String BODY = NEW_LINE + NEW_LINE;
-    private final String OK = "HTTP/2.0 200 OK" + NEW_LINE;
+    private final String OK = "HTTP/1.1 200 OK" + NEW_LINE;
 
     MultiThreadServer(Socket clientSocket) {
         this.clientSocket = clientSocket;
@@ -78,13 +78,9 @@ public class MultiThreadServer implements Runnable {
         String bin = packet.getPacketAsString();
         String str = "HTTP/1.1 101 Switching Protocols" + NEW_LINE;
         str += "Connection: upgrade" + NEW_LINE;
-        str += "Access-Control-Allow-Origin: *" + NEW_LINE;
-        //str += "Cache-Control: no-cache, no-store" + NEW_LINE;
-        str += "Date: " + new SimpleDateFormat().format(new Date()) + NEW_LINE;
-        //str += "Content Type: application/octet-stream" + NEW_LINE;
-        str += "Upgrade: HTTP/2.0" + BODY;
+        str += "Upgrade: h2c" + BODY;
         sendResponse(str + bin);
-        //sendResponse(bin);
+        System.out.println(bin);
     }
 
     private void sendDownloadResponse() {

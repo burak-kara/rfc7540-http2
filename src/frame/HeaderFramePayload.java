@@ -7,10 +7,20 @@ public class HeaderFramePayload extends FramePayload {
     private String e;
     private String dependency;
     private String weight;
+    private String padLength;
+    private String padding;
     private Converter converter;
 
     public HeaderFramePayload() {
         converter = new Converter();
+    }
+
+    public void setPadLength(int length) {
+        this.padLength = converter.intToBinaryString(length, 8);
+    }
+
+    public void setPadding(int padding) {
+        this.padding = converter.intToBinaryString(padding, 0); // TODO change 0
     }
 
     public void setHeaders(String headers) {
@@ -30,10 +40,10 @@ public class HeaderFramePayload extends FramePayload {
     }
 
     public int getSize() {
-        return super.getSize() + headers.length() + e.length() + dependency.length() + weight.length();
+        return padLength.length() + padding.length() + headers.length() + e.length() + dependency.length() + weight.length();
     }
 
     public String getFrame() {
-        return super.getPadLength() + this.e + this.dependency + this.weight + this.headers + super.getPadding();
+        return this.padLength + this.e + this.dependency + this.weight + this.headers + this.padding;
     }
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class HTTP2 {
     private Frame header;
     private Frame data;
+    private Frame settings;
     private ArrayList<Frame> frames = new ArrayList<>();
 
     public void setHeader(Frame frame) {
@@ -19,12 +20,9 @@ public class HTTP2 {
         frames.add(data);
     }
 
-    public Frame getHeader() {
-        return header;
-    }
-
-    public Frame getData() {
-        return data;
+    public void setSettings(Frame frame){
+        this.settings = frame;
+        frames.add(settings);
     }
 
     public ArrayList<Frame> getFrames() {

@@ -5,9 +5,19 @@ import converter.Converter;
 public class DataFramePayload extends FramePayload {
     private Converter converter;
     private String data;
+    private String padLength;
+    private String padding;
 
     public DataFramePayload() {
         converter = new Converter();
+    }
+
+    public void setPadLength(int length) {
+        this.padLength = converter.intToBinaryString(length, 8);
+    }
+
+    public void setPadding(int padding) {
+        this.padding = converter.intToBinaryString(padding, 0); // TODO change 0
     }
 
     public void setData(String str) {
@@ -15,10 +25,10 @@ public class DataFramePayload extends FramePayload {
     }
 
     public int getSize() {
-        return super.getSize() + data.length();
+        return padding.length() + padLength.length() + data.length();
     }
 
     public String getFrame() {
-        return super.getPadLength() + this.data + super.getPadding();
+        return this.padLength + this.data + this.padding;
     }
 }
