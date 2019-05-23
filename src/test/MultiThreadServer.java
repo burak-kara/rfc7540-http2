@@ -10,6 +10,9 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// This class is written for speed test server.
+// But changed to handle HTTP/2.0 requests
+
 public class MultiThreadServer implements Runnable {
     private Socket clientSocket;
     private long time;

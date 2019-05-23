@@ -1,6 +1,7 @@
 package test;
 
 import http2.HTTP2;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -21,17 +22,48 @@ public class Client implements Runnable {
     @Override
     public void run() {
         try {
-            server = new Socket(IP, PORT);
-            InputStreamReader streamReader = new InputStreamReader(server.getInputStream());
+            /*
+            InputStreamReader streamReader = new InputStreamReader(in);
             reader = new BufferedReader(streamReader);
             writer = new PrintWriter(server.getOutputStream());
-            writer.println("Connected");
             writer.flush();
+            System.out.println(reader.readLine());
+            */
+
+            server = new Socket(IP, PORT);
+            System.out.println("Connected");
+
+            InputStream inStream = server.getInputStream();
+            DataInputStream in = new DataInputStream(new BufferedInputStream(inStream));
+            DataOutputStream out = new DataOutputStream(server.getOutputStream());
+
+            TestCreator tc = new TestCreator();
+            String responseHeader = tc.getResponseHeader();
+
+            System.out.println("Message Sent: \n" + responseHeader);
+            out.writeBytes(responseHeader);
+
+            while (true) {
+                byte[] line = new byte[2500];
+                try {
+                    in.read(line);
+                    String str = "";
+                    for (byte i : line) {
+                        System.out.print((char) i);
+                    }
+
+                } catch (EOFException e) {
+                    System.err.println("\nException/End of stream");
+                }
+
+            }
+
+
         } catch (Exception e) {
             System.out.println("Exception " + e);
         }
         Thread IncomingReader = new Thread(new IncomingReader());
-        IncomingReader.start();
+        //IncomingReader.start();
     }
 
     public void sendBoard(String message) {

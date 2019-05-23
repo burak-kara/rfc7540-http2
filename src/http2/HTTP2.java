@@ -25,10 +25,6 @@ public class HTTP2 {
         frames.add(settings);
     }
 
-    public ArrayList<Frame> getFrames() {
-        return frames;
-    }
-
     public String getPacketAsString() {
         StringBuilder str = new StringBuilder();
         for (Frame frame: frames) {

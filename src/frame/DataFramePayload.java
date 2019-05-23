@@ -17,7 +17,7 @@ public class DataFramePayload extends FramePayload {
     }
 
     public void setPadding(int padding) {
-        this.padding = converter.intToBinaryString(padding, 0); // TODO change 0
+        this.padding = converter.intToBinaryString(padding, 0);
     }
 
     public void setData(String str) {
